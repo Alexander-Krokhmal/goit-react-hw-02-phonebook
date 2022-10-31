@@ -18,14 +18,13 @@ class ContactForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const name = e.target.name;
-    const number = e.target.number;
 
     let presentContact = false;
 
     this.props.items.map(({ name }) => {
       if (name === this.state.name) {
-        e.target.name.value = '';
-        number.value = '';
+
+        this.setState({ name: '', number: '' });
 
         presentContact = true;
         return alert(`${name} is already in contacts`);
@@ -40,8 +39,7 @@ class ContactForm extends Component {
       this.props.addContactsProps(this.state.name, this.state.number, nanoid());
       console.log('name', name.value);
 
-      name.value = '';
-      number.value = '';
+    this.setState({ name: '', number: '' });
     }
   };
 
